@@ -2,26 +2,26 @@
 Minecraft Script
 
 ###### as root
-apt-get update -y && apt-get install -y make curl gcc git build-essential openjdk-8-jre-headless
-useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
-ufw allow 25565
-ufw allow 22
-ufw enable
+apt-get update -y && apt-get install -y make curl gcc git build-essential openjdk-8-jre-headless <br>
+useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft <br>
+ufw allow 25565 <br>
+ufw allow 22 <br>
+ufw enable <br>
 
 ###### as minecraft user
-mkdir -p ~/{backups,tools,server}
-cd ~/tools && git clone https://github.com/Tiiffi/mcrcon.git
-cd ~/tools/mcrcon
-gcc -std=gnu99 -Wall -Wextra -Wpedantic -Os -s -fstack-protector-strong -o mcrcon mcrcon.c
-./mcrcon -h
-cd server
-wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar
-java -Xmx3072M -Xms2048M -jar server.jar nogui
+mkdir -p ~/{backups,tools,server} <br>
+cd ~/tools && git clone https://github.com/Tiiffi/mcrcon.git <br>
+cd ~/tools/mcrcon <br>
+gcc -std=gnu99 -Wall -Wextra -Wpedantic -Os -s -fstack-protector-strong -o mcrcon mcrcon.c <br>
+./mcrcon -h <br>
+cd server <br>
+wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar <br>
+java -Xmx3072M -Xms2048M -jar server.jar nogui <br>
 
 # eula.txt
-#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
-#Sat Feb 08 00:08:45 CET 2020
-eula=true
+#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula). <br>
+#Sat Feb 08 00:08:45 CET 2020 <br>
+eula=true <br>
 
 # server.properties
 #Minecraft server properties

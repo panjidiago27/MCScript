@@ -24,93 +24,93 @@ java -Xmx3072M -Xms2048M -jar server.jar nogui <br>
 eula=true <br>
 
 # server.properties
-#Minecraft server properties
-#Wed Feb 12 17:39:54 CET 2020
-spawn-protection=16
-max-tick-time=60000
-query.port=25565
-generator-settings=
-force-gamemode=false
-allow-nether=true
-enforce-whitelist=false
-gamemode=creative
-broadcast-console-to-ops=true
-enable-query=false
-player-idle-timeout=0
-difficulty=peaceful
-spawn-monsters=true
-broadcast-rcon-to-ops=true
-op-permission-level=4
-pvp=true
-snooper-enabled=true
-level-type=default
-hardcore=false
-enable-command-block=true
-max-players=5
-network-compression-threshold=256
-resource-pack-sha1=
-max-world-size=29999984
-function-permission-level=2
-rcon.port=25575
-server-port=25565
-server-ip=
-spawn-npcs=true
-allow-flight=false
-level-name=Mondo_di_Luca
-view-distance=10
-resource-pack=
-spawn-animals=true
-white-list=false
-rcon.password=FUNKYPASSWORD
-generate-structures=true
-max-build-height=256
-online-mode=true
-level-seed=jfewkjwejwef
-use-native-transport=true
-prevent-proxy-connections=false
-enable-rcon=true
-motd=Minecraft Server di Luca ed i suoi amici
+#Minecraft server properties <br>
+#Wed Feb 12 17:39:54 CET 2020 <br>
+spawn-protection=16 <br>
+max-tick-time=60000 <br>
+query.port=25565 <br>
+generator-settings= <br>
+force-gamemode=false <br>
+allow-nether=true <br>
+enforce-whitelist=false <br>
+gamemode=creative <br>
+broadcast-console-to-ops=true <br>
+enable-query=false <br>
+player-idle-timeout=0 <br>
+difficulty=peaceful <br>
+spawn-monsters=true <br>
+broadcast-rcon-to-ops=true <br>
+op-permission-level=4 <br>
+pvp=true <br>
+snooper-enabled=true <br>
+level-type=default <br>
+hardcore=false <br>
+enable-command-block=true <br>
+max-players=5 <br>
+network-compression-threshold=256 <br>
+resource-pack-sha1= <br>
+max-world-size=29999984 <br>
+function-permission-level=2 <br>
+rcon.port=25575 <br>
+server-port=25565 <br>
+server-ip= <br>
+spawn-npcs=true <br>
+allow-flight=false <br>
+level-name=Mondo_di_Luca <br>
+view-distance=10 <br>
+resource-pack= <br>
+spawn-animals=true <br>
+white-list=false <br>
+rcon.password=FUNKYPASSWORD <br>
+generate-structures=true <br>
+max-build-height=256 <br>
+online-mode=true <br>
+level-seed=jfewkjwejwef <br>
+use-native-transport=true <br>
+prevent-proxy-connections=false <br>
+enable-rcon=true <br>
+motd=Minecraft Server di Luca ed i suoi amici <br>
 
 # /opt/minecraft/tools/backup.sh
-#!/bin/bash
-function rcon {
-          /opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p FUNKYPASSWORD "$1"
-  }
-rcon "save-off"
-rcon "save-all"
-tar -cvpzf /opt/minecraft/backups/server-$(date +%F_%R).tar.gz /opt/minecraft/server
-rcon "save-on"
-find /opt/minecraft/backups/ -type f -mtime +7 -name '*.gz' -delete
+#!/bin/bash <br>
+function rcon { <br>
+          /opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p FUNKYPASSWORD "$1" <br>
+  } <br>
+rcon "save-off" <br>
+rcon "save-all" <br>
+tar -cvpzf /opt/minecraft/backups/server-$(date +%F_%R).tar.gz /opt/minecraft/server <br>
+rcon "save-on" <br>
+find /opt/minecraft/backups/ -type f -mtime +7 -name '*.gz' -delete <br>
 
 ###### as minecraft user
-chmod +x /opt/minecraft/tools/backup.sh
+chmod +x /opt/minecraft/tools/backup.sh <br>
 
 # crontab
-00 01 * * * /opt/minecraft/tools/backup.sh
+00 01 * * * /opt/minecraft/tools/backup.sh <br>
 
 ###### as root
 
 # /etc/systemd/system/minecraft.service
-[Unit]
-Description=Minecraft Server
-After=network.target
+[Unit] <br>
+Description=Minecraft Server <br>
+After=network.target <br>
 
 [Service]
-User=minecraft
-Nice=1
-KillMode=none
-SuccessExitStatus=0 1
-ProtectHome=true
-ProtectSystem=full
-PrivateDevices=true
-NoNewPrivileges=true
-WorkingDirectory=/opt/minecraft/server
-ExecStart=/usr/bin/java -Xmx3072M -Xms2048M -jar server.jar nogui
-ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p FUNKYPASSWORD stop
+User=minecraft <br>
+Nice=1 <br>
+KillMode=none <br>
+SuccessExitStatus=0 1 <br>
+ProtectHome=true <br>
+ProtectSystem=full <br>
+PrivateDevices=true <br>
+NoNewPrivileges=true <br>
+WorkingDirectory=/opt/minecraft/server <br>
+ExecStart=/usr/bin/java -Xmx3072M -Xms2048M -jar server.jar nogui <br>
+ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p FUNKYPASSWORD stop <br>
 
-[Install]
-WantedBy=multi-user.target
+[Install] <br>
+WantedBy=multi-user.target <br>
 
 # as root
-systemctl daemon-reload
-systemctl enable minecraft
+systemctl daemon-reload <br>
+systemctl enable minecraft <br>
